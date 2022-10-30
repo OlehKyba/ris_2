@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  ris-image:
+    image: 'ris_2'
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  test:
+    image: 'ris_2'
+    command: pytest . -vv -p no:cacheprovider
+    environment:
+      - ENV_FOR_DYNACONF=test
+    depends_on:
+      - postgres
+    volumes:
+      - type: bind
+        source: .
+        target: /work
+        read_only: True
+
+  postgres:
+    image: postgres:14
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ris_2
