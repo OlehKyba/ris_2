@@ -180,6 +180,7 @@ def test_fetch_resumes_by_author(
     user_1: e.User,
     resume_1: e.Resume,
     resume_2: e.Resume,
+    resume_3: e.Resume,
 ):
     resumes = repository.fetch_resumes_by_author(user_1.id)
 

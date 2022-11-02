@@ -8,3 +8,6 @@ SQLALCHEMY_URI: Final[str] = os.getenv(
 MONGODB_URI: Final[str] = os.getenv(
     'MONGODB_URI', 'mongodb://mongodb:27017'
 )
+NEO4J_URI: Final[str] = os.getenv(
+    'NEO4J_URI', 'bolt://neo4j:test@neo4j:7687'
+)

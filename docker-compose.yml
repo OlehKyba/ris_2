@@ -9,12 +9,13 @@ services:
 
   test:
     image: 'ris_2'
-    command: pytest . -s -vv -p no:cacheprovider
+    command: sh -c 'sleep 20 && pytest . -s -vv -p no:cacheprovider'
     environment:
       - ENV_FOR_DYNACONF=test
     depends_on:
       - postgres
       - mongodb
+      - neo4j
     volumes:
       - type: bind
         source: .
@@ -33,3 +34,9 @@ services:
     image: mongo:5.0.2
     restart: unless-stopped
     command: mongod --quiet --logpath /dev/null
+
+  neo4j:
+    image: neo4j:4.2.19
+    restart: unless-stopped
+    environment:
+      - NEO4J_AUTH=neo4j/test
