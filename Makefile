@@ -1,4 +1,6 @@
 build:
 	docker-compose build ris-image
+run:
+	docker-compose up --scale ris-image=0 --scale test=0
 test:
-	docker-compose up --scale ris-image=0 --abort-on-container-exit
+	docker-compose run test

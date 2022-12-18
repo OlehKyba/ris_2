@@ -9,7 +9,7 @@ services:
 
   test:
     image: 'ris_2'
-    command: sh -c 'sleep 20 && pytest . -s -vv -p no:cacheprovider'
+    command: pytest . -s -vv -p no:cacheprovider
     environment:
       - ENV_FOR_DYNACONF=test
     depends_on:
@@ -33,7 +33,7 @@ services:
   mongodb:
     image: mongo:5.0.2
     restart: unless-stopped
-    command: mongod --quiet --logpath /dev/null
+#    command: mongod --quiet --logpath /dev/null
 
   neo4j:
     image: neo4j:4.2.19
